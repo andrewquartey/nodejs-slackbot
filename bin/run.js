@@ -3,12 +3,12 @@ require('dotenv').config();
 const slackClient = require('../server/slackClient');
 const service = require('../server/service');
 const http = require('http');
-console.log(slackClient);
 const server = http.createServer(service);
 
 const token = process.env.SLACK_TOKEN;
-console.log(token)
-const rtm = slackClient.init(token);
+const slackLogLevel = 'debug';
+
+const rtm = slackClient.init(token, slackLogLevel);
 rtm.start();
 
 server.listen(3000);
